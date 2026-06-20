@@ -1,0 +1,18 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+
+# Node
+server/node_modules/
+frontend/node_modules/
+
+# Secrets — never commit these
+server/.env
+
+# Vite build output
+frontend/dist/
+
+# OS
+.DS_Store
+Thumbs.db
