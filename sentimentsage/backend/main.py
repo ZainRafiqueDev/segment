@@ -49,14 +49,18 @@ print('LSTM loaded.')
 # ── Load BERT via HuggingFace ──────────────────────────────────────────
 # Week 13: Transformers — self-attention, word embeddings, positional encoding
 # We use distilbert fine-tuned on SST-2 (movie reviews) — no training needed
-print('Loading BERT (this may take a minute on first run)...')
+# Lightweight BERT alternative — fits in 512MB
+from transformers import pipeline
+print('Loading lightweight model...')
 bert_pipeline = pipeline(
-    'sentiment-analysis',
+    'text-classification',
     model='distilbert-base-uncased-finetuned-sst-2-english',
-    device=0 if torch.cuda.is_available() else -1,
+    device=-1,
     truncation=True,
-    max_length=512,
+    max_length=128,
+    model_kwargs={'low_cpu_mem_usage': True}
 )
+print('Model loaded.')
 print('BERT loaded.')
 
 # ── Load RAG store ─────────────────────────────────────────────────────
